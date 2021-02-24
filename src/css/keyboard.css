@@ -1,0 +1,131 @@
+.keyboard {
+  position: fixed;
+  z-index: 1015;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	padding: 10px;
+	box-sizing: border-box;
+
+	background: rgb(199, 190, 190);
+	box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+	user-select: none;
+	transition: bottom 1s;
+}
+
+.keyboard--hidden {
+	bottom: -100%;
+}
+
+.keyboard__keys {
+	display: grid;
+	grid-template-rows: repeat(5, 45px);
+	grid-template-columns: repeat(14, 1fr);
+	row-gap: 5px;
+	column-gap: 0.3%;
+	width: 100%;
+}
+
+.keyboard__key {
+	height: 45px;
+	width: 100%;
+	border-radius: 4px;
+	border: none;
+	background: rgba(255, 255, 255, 0.5);
+	color: #000;
+	font-size: 17px;
+	outline: none;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	vertical-align: top;
+	padding: 0;
+	-webkit-tap-highlight-color: transparent;
+	position: relative;
+	box-sizing: border-box;
+}
+
+.keyboard__key:hover {
+	text-shadow: 0 0 20px #fff;
+}
+
+.keyboard__key:active {
+	background: rgba(255, 255, 255, 0.12);
+}
+
+.keyboard__key--left {
+	justify-content: flex-start;
+	padding-left: 5px;
+}
+
+.keyboard__key--right {
+	justify-content: flex-end;
+	padding-right: 15px;
+}
+
+.keyboard__key--activatable::after {
+	content: "";
+	top: 10px;
+	right: 10px;
+	position: absolute;
+	width: 8px;
+	height: 8px;
+	background: rgba(0, 0, 0, 0.4);
+	border-radius: 50%;
+}
+
+.keyboard__key--active::after {
+	background: #760505;
+}
+
+.keyboard__key--dark {
+	background: rgba(0, 0, 0, 0.25);
+}
+
+.btn-shift-disabled {
+	grid-row: 4/5;
+	grid-column: 13/15;
+	pointer-events: none;
+	background: rgba(255, 255, 255, 0.35);
+}
+
+.btn-done {
+	grid-row: 5/6;
+	grid-column: 1/3;
+}
+
+.btn-language {
+	grid-row: 5/6;
+	grid-column: 3/5;
+}
+
+.btn-mic {
+	grid-row: 5/6;
+	grid-column: 11/13;
+}
+
+.btn-shift {
+	grid-row: 4/5;
+	grid-column: 1/3;
+}
+
+.btn-enter {
+	grid-row: 3/4;
+	grid-column: 13/15;
+}
+
+.btn-backspace {
+	grid-row: 1/2;
+	grid-column: 14/15;
+}
+
+.btn-space {
+	grid-row: 5/6;
+	grid-column: 5/11;
+}
+
+.disabled {
+	background: rgba(255, 255, 255, 0.35);
+	pointer-events: none;
+}

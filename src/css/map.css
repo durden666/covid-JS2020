@@ -1,0 +1,168 @@
+.btns-container {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+}
+
+.btn-map,
+.btn-legend {
+  padding: 5px 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  outline: none;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.btn-map:hover,
+.btn-legend:hover {
+  text-shadow: 0 0 2px #000;
+}
+
+.btn-map.active {
+  background-color: #fff;
+  pointer-events: none;
+}
+
+.btn-legend.active {
+  background-color: #fff;
+}
+
+.map {
+  position: relative;
+  width: 85%;
+  height: 80%;
+  border: 2px solid #fff;
+  box-sizing: border-box;
+}
+
+.map.hide {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.map-subtitle {
+  margin: 0 0 5px;
+}
+
+.popup {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  height: 100px;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #fff;
+  color: #000;
+  transition: 0.3s;
+}
+
+.popup.hide {
+  height: 0;
+  padding: 0;
+}
+
+.popup-wr-title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.popup-title {
+  margin: 0;
+  font-family: sans-serif;
+  font-size: 16px;
+}
+
+.popup-btn-close {
+  outline: none;
+  cursor: pointer;
+  background-color: rgba(170, 220, 20, 0.3);
+  border-radius: 10px;
+  border: none;
+  transition: 0.3s;
+}
+
+.popup-btn-close:hover {
+  background-color: #fff;
+}
+
+.popup-list {
+  margin: 0;
+  padding: 0;
+}
+
+.popup-icon {
+  margin-right: 15px;
+}
+
+.popup-item {
+  display: flex;
+  margin-bottom: 10px;
+  list-style-type: none;
+  font-size: 14px;
+}
+
+.div-icon {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.cases-1 {
+  background-color: rgba(255, 238, 0, 0.7);
+}
+.cases-2 {
+  background-color: rgba(255, 132, 0, 0.7);
+}
+.cases-3 {
+  background-color: rgba(255, 72, 0, 0.7);
+}
+.cases-4 {
+  background-color: rgba(255, 0, 0, 0.7);
+}
+.cases-5 {
+  background-color: rgba(138, 4, 4, 0.7);
+}
+
+.deaths-1 {
+  background-color: rgba(0, 128, 255, 0.7);
+}
+.deaths-2 {
+  background-color: rgba(45, 30, 218, 0.7);
+}
+.deaths-3 {
+  background-color: rgba(37, 24, 108, 0.7);
+}
+.deaths-4 {
+  background-color: rgba(15, 5, 69, 0.7);
+}
+.deaths-5 {
+  background-color: rgba(4, 8, 27, 0.7);
+}
+
+.recovered-1 {
+  background-color: rgba(154, 255, 52, 0.7);
+}
+.recovered-2 {
+  background-color: rgba(22, 255, 22, 0.7);
+}
+.recovered-3 {
+  background-color: rgba(0, 187, 12, 0.7);
+}
+.recovered-4 {
+  background-color: rgba(0, 132, 37, 0.7);
+}
+.recovered-5 {
+  background-color: rgba(0, 78, 9, 0.7);
+}
+
+.leaflet-popup-tip-container {
+  display: none;
+}

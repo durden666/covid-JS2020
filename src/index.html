@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Covid</title>
+
+  <link rel="shortcut icon" href="./assets/icon.png" type="image/png">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <h1 class="title">COVID-19 Dashboard</h1>
+  <div class="grid-container">
+    <div class="container glob-cases" id="global-cases">
+      <div class="container__icon">
+        <i class="fas fa-arrows-alt"></i>
+      </div>
+    </div>
+    <div class="container cases-container" id="country-list">
+      <div class="country__header">
+        <div class="country__wr-title">
+          <span class="country__btn prev">&#60</span>
+          <h2 class="country__title">Total Cases</h2>
+          <span class="country__btn next">&#62</span>
+        </div>
+        <div class="wr-input">
+          <input class="country-list-input" type="text" id="cases-search" placeholder="Search for a Country">
+          <div class="wr-svg-keyboard" id="keyboard">
+            <i class="far fa-keyboard"></i>
+          </div>
+        </div>
+      </div>
+      <div id="cases-wrapper"></div>
+      <div class="container__icon">
+        <i class="fas fa-arrows-alt"></i>
+      </div>
+    </div>
+    <div class="container update" id="update-container">
+      <h2 class="container__title">Last Updated at (M/D/YYYY)</h2>
+      <p class="container__info" id="date"></p>
+      <div class="container__icon">
+        <i class="fas fa-arrows-alt"></i>
+      </div>
+    </div>
+    <div class="container wr-map">
+      <div class="map" id="map-1"></div>
+      <div class="map hide" id="map-2"></div>
+      <div class="map hide" id="map-3"></div>
+      <div class="popup hide" id="map-popup">
+        <div class="popup-wr-title">
+          <h2 class="popup-title">Legend - Total cases</h2>
+          <button class="popup-btn-close">X</button>
+        </div>
+        <div class="popup-content">
+          <ul class="popup-list">
+            <li class="popup-item">
+              <div class="div-icon popup-icon cases-5"></div>
+              <span>> 1 000 000</span>
+            </li>
+            <li class="popup-item">
+              <div class="div-icon popup-icon cases-4"></div>
+              <span>> 500 000 - 1 000 000</span>
+            </li>
+            <li class="popup-item">
+              <div class="div-icon popup-icon cases-3"></div>
+              <span>> 250 000 - 500 000</span>
+            </li>
+            <li class="popup-item">
+              <div class="div-icon popup-icon cases-2"></div>
+              <span>> 100 000 - 250 000</span>
+            </li>
+            <li class="popup-item">
+              <div class="div-icon popup-icon cases-1"></div>
+              <span>
+                < 100 000</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="btns-container">
+        <div>
+          <button class="btn-map active" data-id="map-1" data-map="cases">Total Cases</button>
+          <button class="btn-map" data-id="map-2" data-map="deaths">Total Deaths</button>
+          <button class="btn-map" data-id="map-3" data-map="recovered">Total Recovered</button>
+        </div>
+        <button class="btn-legend">Legend</button>
+      </div>
+      <div class="container__icon">
+        <i class="fas fa-arrows-alt"></i>
+      </div>
+    </div>
+    <div class="container death-container">
+      <div class="container__icon">
+        <i class="fas fa-arrows-alt"></i>
+      </div>
+      <div class="total-info"></div>
+      <div class="table-info"></div>
+    </div>
+    <div class="container test-container" id="test-container">
+      <div class="container__icon">
+        <i class="fas fa-arrows-alt"></i>
+      </div>
+      <h2 class="country__title table-info__title">USA</h2>
+      <div class="per100-info">
+        <h3 class="container__title">Deaths (per 100 000): </h3>
+        <span class="container__info black">1 531</span>
+        <h3 class="container__title">Recovered (per 100 000): </h3>
+        <span class="container__info green">654 154</span>
+      </div>
+      <div class="day-info">
+        <h3 class="container__title">Today Deaths: </h3>
+        <span class="container__info black">100</span>
+        <h3 class="container__title">Today Recovered: </h3>
+        <span class="container__info green">21 045</span>
+      </div>
+    </div>
+    <div class="container schedule" id="schedule">
+      <div class="chart" id="chart">
+        <canvas id="myChart"></canvas>
+        <div class="container__wr-btns">
+          <button class="btn-cases" data-category="confirmed">Confirmed</button>
+          <button class="btn-cases" data-category="deaths">Deaths</button>
+          <button class="btn-cases" data-category="recovered">Recovered</button>
+        </div>
+      </div>
+      <div class="container__icon">
+        <i class="fas fa-arrows-alt"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script> -->
+  <!-- <script src="//cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script> -->
+  <!-- <script src="http://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script> -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+</body>
+
+</html>
